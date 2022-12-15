@@ -28,7 +28,7 @@ public class TableauBord implements Gestionnaire {
 
     }
     @Override
-    public void update(ArrayList<Temperature> temps) {
-        afficherInfos(temps);
+    public void update(boolean bool) {
+        recupererInformation();
     }
 }

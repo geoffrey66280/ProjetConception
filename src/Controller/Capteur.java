@@ -7,7 +7,7 @@ public class Capteur implements CapteurObserver{
 
     private String reference;
     private Centrale centrale;
-    private float temp;
+    private double temp;
     private int min = 5;
     private int max = 19;
 
@@ -27,7 +27,7 @@ public class Capteur implements CapteurObserver{
         notifyCentral();
     }
 
-    public float getTemp(){
+    public double getTemp(){
         return this.temp;
     }
 

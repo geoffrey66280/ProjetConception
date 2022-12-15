@@ -1,6 +1,6 @@
 package Controller;
 
-public class Actionneur {
+public class Actionneur implements Gestionnaire{
 
     private String reference;
 
@@ -18,5 +18,14 @@ public class Actionneur {
 
     public void eteindreChauffage(){
         System.out.println("Les chauffages sont à présent éteints");
+    }
+
+    @Override
+    public void update(boolean bool) {
+        if(bool){
+            eteindreChauffage();
+        } else {
+            allumerChauffage();
+        }
     }
 }

@@ -8,7 +8,7 @@ public class main {
 
     public static void main(String[] args) {
 
-        ArrayList<Temperature> temps = new ArrayList<Temperature>();
+        ArrayList<Temperature> temps = new ArrayList<>();
         Temperature temperature1 = new Temperature(05022002, "Ref0125638", 20.5);
 
         temps.add(temperature1);

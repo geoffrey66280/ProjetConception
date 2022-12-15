@@ -9,9 +9,9 @@ import java.util.Date;
 import java.util.Random;
 
 public class Centrale {
-    private float seuilElectricite = 50;
-    private float seuilTemp = 15;
-    private float electriciteActuel;
+    private double seuilElectricite = 50;
+    private double seuilTemp = 15;
+    private double electriciteActuel;
     private ArrayList<Temperature> temperatures;
     private ArrayList<Gestionnaire> gestionnaires;
 
@@ -20,23 +20,17 @@ public class Centrale {
         this.electriciteActuel = r.nextFloat(0,100);
     }
 
-    public void updateEtatElectricite(){
-
+    public void notifyGestionnaire(boolean bool){
+        for (Gestionnaire gest : this.gestionnaires){
+            gest.update(bool);
+        }
     }
 
-    public void allumerChauffage(){
-
-    }
-
-    public void couperChauffage(){
-
-    }
-
-    public void verifierTemperature(Capteur c, float temp){
+    public void verifierTemperature(Capteur c, double temp){
         if(temp >= seuilTemp){
-            //Eteindre chauffage et appeler gestionnaire
+            notifyGestionnaire(true);
         } else {
-            //allume chauffage et appeler gestionnaire
+            notifyGestionnaire(false);
         }
         stockerTemp(0102, c.getReference(), temp);
     }
@@ -44,7 +38,7 @@ public class Centrale {
     /*
     Enregistre un objet Temperature
      */
-    public void stockerTemp( int d, String ref,float t){
+    public void stockerTemp( int d, String ref,double t){
         this.temperatures.add(new Temperature(d,ref,t));
     }
 
