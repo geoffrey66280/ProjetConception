@@ -38,6 +38,11 @@ public class Temperature {
         this.temperature = temperature;
     }
 
-
-
+    @Override
+    public String toString() {
+        return "date=" + date +
+                ", refCapteur='" + refCapteur + '\'' +
+                ", temperature=" + temperature +
+                "°C";
+    }
 }

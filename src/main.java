@@ -1,3 +1,5 @@
+import Controller.Actionneur;
+import Controller.Capteur;
 import Controller.Centrale;
 import Model.Temperature;
 import Vue.TableauBord;
@@ -7,16 +9,25 @@ import java.util.ArrayList;
 public class main {
 
     public static void main(String[] args) {
-
-        ArrayList<Temperature> temps = new ArrayList<>();
-        Temperature temperature1 = new Temperature(05022002, "Ref0125638", 20.5);
-
-        temps.add(temperature1);
+        // Centrale
         Centrale centre = new Centrale();
-        TableauBord tb = new TableauBord(centre);
+        // Capteur
+        Capteur c1 = new Capteur("A26", centre);
+        Capteur c2 = new Capteur("A27", centre);
+        Capteur c3 = new Capteur("A28", centre);
+        // Tableau de bord
+        TableauBord t1 = new TableauBord(centre);
+        // Actionneur
+        Actionneur a1 = new Actionneur("A17");
 
-        tb.recupererInformation();
+        // souscriptions
+        centre.suscribeGestionnaire(t1);
+        centre.suscribeGestionnaire(a1);
 
+        // mesures de temperatures des capteurs et traitement
+        c1.mesurerTemperature();
+        c2.mesurerTemperature();
+        c3.mesurerTemperature();
     }
 
 

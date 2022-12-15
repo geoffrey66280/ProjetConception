@@ -1,22 +1,20 @@
 package Controller;
 
 import Model.Temperature;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
 import java.util.Random;
 
 public class Centrale {
-    private double seuilElectricite = 50;
-    private double seuilTemp = 15;
+    private double seuilElectricite = 20;
+    private double seuilTemp = 10;
     private double electriciteActuel;
     private ArrayList<Temperature> temperatures;
     private ArrayList<Gestionnaire> gestionnaires;
 
     public Centrale(){
         Random r = new Random();
+        this.gestionnaires = new ArrayList<>();
+        this.temperatures = new ArrayList<>();
         this.electriciteActuel = r.nextFloat(0,100);
     }
 
@@ -27,12 +25,24 @@ public class Centrale {
     }
 
     public void verifierTemperature(Capteur c, double temp){
-        if(temp >= seuilTemp){
+        stockerTemp(0102, c.getReference(), temp);
+        System.out.println("Electricite actuelle " + this.electriciteActuel);
+        if(temp >= seuilTemp && !verifierElectricite()){
+            // On eteint le chauffage et on affiche
             notifyGestionnaire(true);
         } else {
+            // On eteint le chauffage et on affiche
             notifyGestionnaire(false);
         }
-        stockerTemp(0102, c.getReference(), temp);
+    }
+    public boolean verifierElectricite(){
+        Random r = new Random();
+        this.electriciteActuel = r.nextFloat(0,100);
+        if (this.electriciteActuel < this.seuilElectricite){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     /*
@@ -42,10 +52,16 @@ public class Centrale {
         this.temperatures.add(new Temperature(d,ref,t));
     }
 
+    /*
+    Ajoute un gestionnaire aux souscripteur
+     */
+    public void suscribeGestionnaire(Gestionnaire g){
+        this.gestionnaires.add(g);
+    }
 
     public ArrayList<Temperature> getTemperatures() {
         ArrayList<Temperature> temps = new ArrayList<Temperature>();
-        for (int i=0; i<10; i++){
+        for (int i=0; i<temperatures.size(); i++){
             temps.add(temperatures.get(i));
         }
         return temps;
