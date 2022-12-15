@@ -8,10 +8,6 @@ public class Actionneur implements Gestionnaire{
         this.reference = reference;
     }
 
-    public String getReference() {
-        return reference;
-    }
-
     public void allumerChauffage(){
         System.out.println("Les chauffages sont maintenant allumés");
     }

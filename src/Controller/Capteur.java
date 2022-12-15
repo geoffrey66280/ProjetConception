@@ -1,6 +1,5 @@
 package Controller;
 
-import java.util.Objects;
 import java.util.Random;
 
 public class Capteur implements CapteurObserver{
@@ -8,8 +7,6 @@ public class Capteur implements CapteurObserver{
     private String reference;
     private Centrale centrale;
     private double temp;
-    private int min = 5;
-    private int max = 19;
 
     public Capteur(String reference, Centrale centrale){
         this.reference = reference;
@@ -23,12 +20,8 @@ public class Capteur implements CapteurObserver{
 
     public void mesurerTemperature(){
         Random r = new Random();
-        this.temp = min + r.nextFloat() * (max - min);
+        this.temp = 5 + r.nextFloat() * (19 - 5);
         notifyCentral();
-    }
-
-    public double getTemp(){
-        return this.temp;
     }
 
     @Override

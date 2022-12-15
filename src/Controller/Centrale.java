@@ -48,7 +48,7 @@ public class Centrale {
     /*
     Enregistre un objet Temperature
      */
-    public void stockerTemp( int d, String ref,double t){
+    public void stockerTemp(int d, String ref, double t){
         this.temperatures.add(new Temperature(d,ref,t));
     }
 
@@ -60,7 +60,7 @@ public class Centrale {
     }
 
     public ArrayList<Temperature> getTemperatures() {
-        ArrayList<Temperature> temps = new ArrayList<Temperature>();
+        ArrayList<Temperature> temps = new ArrayList<>();
         for (int i=0; i<temperatures.size(); i++){
             temps.add(temperatures.get(i));
         }

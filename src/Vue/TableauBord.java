@@ -13,12 +13,9 @@ public class TableauBord implements Gestionnaire {
     public TableauBord(Centrale centrale) {
         this.centraleVue = centrale;
     }
+
     public void recupererInformation() {
         afficherInfos(this.centraleVue.getTemperatures());
-    }
-
-    public void recevoirInformation(ArrayList<Temperature> temps) {
-        afficherInfos(temps);
     }
 
     public void afficherInfos(ArrayList<Temperature> temps) {
