@@ -3,16 +3,18 @@ package Controller;
 import java.util.Objects;
 import java.util.Random;
 
-public class Capteur {
+public class Capteur implements CapteurObserver{
 
     private String reference;
+    private Centrale centrale;
     private float temp;
     private int min = 5;
     private int max = 19;
 
-    public Capteur(String reference){
+    public Capteur(String reference, Centrale centrale){
         this.reference = reference;
         this.temp = 0;
+        this.centrale = centrale;
     }
 
     public String getReference() {
@@ -22,18 +24,15 @@ public class Capteur {
     public void mesurerTemperature(){
         Random r = new Random();
         this.temp = min + r.nextFloat() * (max - min);
-    }
-
-    public void notifyCapteur(){
-
+        notifyCentral();
     }
 
     public float getTemp(){
         return this.temp;
     }
 
-    public void setTemp(float temp) {
-        this.temp = temp;
-
+    @Override
+    public void notifyCentral() {
+        this.centrale.verifierTemperature(this, this.temp);
     }
 }

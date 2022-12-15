@@ -6,7 +6,7 @@ public class Temperature {
 
     private int date;
     private String refCapteur;
-    private double temperature;
+    private float temperature;
 
     public int getDate() {
         return date;
@@ -24,15 +24,15 @@ public class Temperature {
         this.refCapteur = refCapteur;
     }
 
-    public double getTemperature() {
+    public float getTemperature() {
         return temperature;
     }
 
-    public void setTemperature(double temperature) {
+    public void setTemperature(float temperature) {
         this.temperature = temperature;
     }
 
-    public Temperature(int date, String refCapteur, double temperature) {
+    public Temperature(int date, String refCapteur, float temperature) {
         this.date = date;
         this.refCapteur = refCapteur;
         this.temperature = temperature;
