@@ -15,4 +15,20 @@ public class Salle {
     public ArrayList<Capteur> getCapteurs() {
         return this.capteurs;
     }
+
+    public void addCapteurs(Capteur capteur){
+        this.capteurs.add(capteur);
+    }
+
+    public float transmettreTemperature(){
+        float sum = 0;
+        int count = 0;
+        for (Capteur c : this.capteurs){
+            sum += c.getTemp();
+            count++;
+        }
+        return sum/count;
+    }
+
+
 }
