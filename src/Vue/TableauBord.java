@@ -1,24 +1,34 @@
 package Vue;
 
-public class TableauBord {
+import Controller.Centrale;
+import Controller.Gestionnaire;
+import Model.Temperature;
 
-    public void envoyerInformation() {
+import java.util.ArrayList;
 
+public class TableauBord implements Gestionnaire {
+
+    private Centrale centraleVue;
+
+    public TableauBord(Centrale centrale) {
+        this.centraleVue = centrale;
+    }
+    public void recupererInformation() {
+        afficherInfos(this.centraleVue.getTemperature());
     }
 
-    public void recevoirInformation() {
-
+    public void recevoirInformation(ArrayList<Temperature> temps) {
+        afficherInfos(temps);
     }
 
-    public void operation() {
+    public void afficherInfos(ArrayList<Temperature> temps) {
+        for(Temperature t : temps){
+            System.out.println(t);
+        }
 
     }
-
-    public void afficherInfos() {
-
-    }
-
-    public void update() {
-
+    @Override
+    public void update(ArrayList<Temperature> temps) {
+        afficherInfos(temps);
     }
 }
