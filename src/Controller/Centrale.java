@@ -26,7 +26,7 @@ public class Centrale {
     public void stockerTemp(){
 
     }
-    public void suscribe(){
+    public void suscribe(Capteur c){
 
     }
 
